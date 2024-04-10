@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>goose king of calculations</title>
+    <style>
+        /* Estilos CSS para a calculadora */
+        body {
+            background-color: #ff0000; /* Cor de fundo vermelha */
+            margin: 0; /* Remove a margem padrão do corpo */
+            padding: 0; /* Remove o padding padrão do corpo */
+        }
+
+        h1 {
+            color: blue;
+            font-size: 24px;
+            text-align: center; /* Alinha o texto ao centro */
+        }
+
+        .calculadora {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            padding: 10px;
+            background-color: black; /* Cor de fundo preta */
+            border-radius: 5px;
+            text-align: center; /* Alinha o texto dos botões ao centro */
+            margin-top: 50px; /* Adiciona uma margem superior de 50px */
+        }
+
+        .calculadora button {
+            padding: 20px;
+            font-size: 20px;
+            border: none;
+            background-color: black;
+            color: white; /* Cor do texto branco */
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .calculadora button:hover {
+            background-color: white;
+            color: black; /* Altera a cor do texto ao passar o mouse */
+        }
+
+        #tela {
+            grid-column: 1 / span 4;
+            padding: 10px;
+            text-align: center; /* Alinha o texto ao centro */
+            font-size: 24px;
+            background-color: #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>goose king of calculations </h1>
+
+<div id="tela"></div>
+
+<div class="calculadora">   
+    <button onclick="adicionar('1')">1</button>
+    <button onclick="adicionar('2')">2</button>
+    <button onclick="adicionar('3')">3</button>
+    <button onclick="adicionar('+')">+</button>
+    <button onclick="adicionar('4')">4</button>
+    <button onclick="adicionar('5')">5</button>
+    <button onclick="adicionar('6')">6</button>
+    <button onclick="adicionar('-')">-</button>
+    <button onclick="adicionar('7')">7</button>
+    <button onclick="adicionar('8')">8</button>
+    <button onclick="adicionar('9')">9</button>
+    <button onclick="adicionar('*')">×</button> <!-- Alterado para usar o símbolo de multiplicação -->
+    <button onclick="adicionar('0')">0</button>
+    <button onclick="calcular()">=</button>
+    <button onclick="adicionar('/')">/</button>
+    <button onclick="apagar()">C</button>
+</div>
+  
+<script>
+    let expressao = '';
+
+    function adicionar(valor) {
+        if (valor === '×') {
+            valor = '*'; // Substituir o símbolo de multiplicação pelo asterisco
+        }
+        expressao += valor;
+        atualizarTela();
+    }
+
+    function apagar() {
+        expressao = '';
+        atualizarTela();
+    }
+
+    function calcular() {
+        try {
+            const resultado = eval(expressao);
+            expressao = resultado.toString();
+            atualizarTela();
+        } catch (error) {
+            expressao = '';
+            document.getElementById("tela").innerText = "Erro";
+        }
+    }
+
+    function atualizarTela() {
+        document.getElementById("tela").innerText = expressao;
+    }
+</script>
+
+</body>
+</html>
